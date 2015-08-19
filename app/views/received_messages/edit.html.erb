@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+<% if @received_message.errors.any? %>
+  <% @received_message.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Received Message #<%= @received_message.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_received_message/<%= @received_message.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for status -->
+      <div class="checkbox">
+        <label for="status">
+          <input type="checkbox" id="status" name="status" value="1" <%= "checked" if @received_message.status %>>
+          Status
+        </label>
+      </div>
+
+      <!-- Label and input for message_id -->
+      <div class="form-group">
+        <label for="message_id" class="control-label">
+          Message
+        </label>
+
+        <input type="text" id="message_id" name="message_id" placeholder="Message" class="form-control" value="<%= @received_message.message_id %>">
+      </div>
+
+      <!-- Label and input for professional_id -->
+      <div class="form-group">
+        <label for="professional_id" class="control-label">
+          Professional
+        </label>
+
+        <input type="text" id="professional_id" name="professional_id" placeholder="Professional" class="form-control" value="<%= @received_message.professional_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Received Message
+      </button>
+      or
+      <a href="/received_messages/<%= @received_message.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

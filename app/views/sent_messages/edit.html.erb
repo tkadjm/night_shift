@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @sent_message.errors.any? %>
+  <% @sent_message.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Sent Message #<%= @sent_message.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_sent_message/<%= @sent_message.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for message_id -->
+      <div class="form-group">
+        <label for="message_id" class="control-label">
+          Message
+        </label>
+
+        <input type="text" id="message_id" name="message_id" placeholder="Message" class="form-control" value="<%= @sent_message.message_id %>">
+      </div>
+
+      <!-- Label and input for professional_id -->
+      <div class="form-group">
+        <label for="professional_id" class="control-label">
+          Professional
+        </label>
+
+        <input type="text" id="professional_id" name="professional_id" placeholder="Professional" class="form-control" value="<%= @sent_message.professional_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Sent Message
+      </button>
+      or
+      <a href="/sent_messages/<%= @sent_message.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

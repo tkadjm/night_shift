@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>
+    Sent messages
+    <a href="/sent_messages/new" class="btn btn-lg btn-success">New Sent message</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Message</th>
+        <th>Professional</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @sent_messages.each do |sent_message| %>
+      <tr>
+        <td><%= sent_message.message_id %></td>
+        <td><%= sent_message.professional_id %></td>
+        <td>
+          <a href="/sent_messages/<%= sent_message.id %>" class="btn btn-primary">Show</a>
+          <a href="/sent_messages/<%= sent_message.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_sent_message/<%= sent_message.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

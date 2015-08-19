@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @call_shift.errors.any? %>
+  <% @call_shift.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Call Shift #<%= @call_shift.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_call_shift/<%= @call_shift.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for site_id -->
+      <div class="form-group">
+        <label for="site_id" class="control-label">
+          Site
+        </label>
+
+        <input type="text" id="site_id" name="site_id" placeholder="Site" class="form-control" value="<%= @call_shift.site_id %>">
+      </div>
+
+      <!-- Label and input for professional_id -->
+      <div class="form-group">
+        <label for="professional_id" class="control-label">
+          Professional
+        </label>
+
+        <input type="text" id="professional_id" name="professional_id" placeholder="Professional" class="form-control" value="<%= @call_shift.professional_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Call Shift
+      </button>
+      or
+      <a href="/call_shifts/<%= @call_shift.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
